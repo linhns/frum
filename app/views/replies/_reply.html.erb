@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class='card my-1 even'>
+    <div class="card-body">
+      <span class="card-text">
+        <%= reply.body %>
+      </span>
+      <aside class="card-text">
+        <small class="text-muted">
+          Last updated <%= distance_of_time_in_words(reply.updated_at, Time.now) %> ago by <%= reply.user.email %>
+        </small>
+      <aside>
+    </div>
+    <div class="card-footer">
+        <% if current_user == reply.user %>
+          <%= link_to 'Edit' , edit_post_reply_path(reply.post, reply), class: "reply-edit-link" %>
+          | <%= link_to 'Delete', [reply.post, reply], method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+    </div>
+  </div>
+</div>

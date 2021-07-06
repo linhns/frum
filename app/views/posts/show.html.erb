@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class='card my-4 odd'>
+    <div class="card-body">
+      <h5 class="card-title">
+        <%= @post.title %>
+        <span class="text-muted">#<%= @post.id %></span>
+      </h5>
+      <span class=" mb-2">
+        <%= @post.body %>
+      </span>
+      <aside class="card-text">
+        <small class="text-muted">
+          Last updated <%= distance_of_time_in_words(@post.updated_at, Time.now) %> ago by <%= @post.user.name %>
+        </small>
+      <aside>
+    </div>
+    <div class="card-footer">
+        <% if current_user == @post.user %>
+          <%= link_to 'Edit' , edit_post_path(@post) %>
+          | <%= link_to 'Delete' , @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        | <a href='#reply'>Reply</a>
+    </div>
+  </div>
+</div>
+
+<%= render @post.replies %>
+
+<%= render 'replies/build_form' %>

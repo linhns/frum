@@ -1,0 +1,23 @@
+<% @user ||=current_user %>
+
+<div class='container-fluid'>
+	<div class="card mt-4">
+		<div class='container-fluid'>
+			<div class="card-title">
+				<%= @user.name %> 
+			</div>
+			<span class='mb-2'>
+				<%= @user.email %>
+			</span>
+		</div>
+			<div class="row">
+				<div class="col-5"> <strong>
+						<%= @user.posts.count %>
+					</strong> Posts </div> |
+				<div class="col-5"> <strong>
+						<%= @user.replies.count %>
+					</strong> Replies </div>
+			
+				</div>
+	</div>
+</div>

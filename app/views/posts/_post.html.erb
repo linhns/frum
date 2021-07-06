@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class='card my-4 <%= cycle("odd", "even") -%>'>
+      <div class="card-body">
+        <h5 class="card-title"> 
+          <%= link_to post do %>
+            <%= post.title %>
+          <% end %>
+          <span class="text-muted">#<%= post.id %></span>
+        </h5>
+        <span class="card-text">
+          <%= post.body %> 
+        </span>
+        <aside class="card-text">
+          <small class="text-muted"> 
+            Last updated <%= distance_of_time_in_words(post.updated_at, Time.now) %> ago by <%= post.user.name %> 
+          </small>
+        <aside>
+      </div>
+      <div class="card-footer">
+        <%= link_to 'View', post %>
+        <% if current_user == post.user %>
+          | <%= link_to 'Edit', edit_post_path(post) %>
+          | <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </div>
+    </div>
+</div>

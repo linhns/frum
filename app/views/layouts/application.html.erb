@@ -6,11 +6,29 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <% if user_signed_in? %>
+      <% if controller.controller_name == "users" %>
+        <%= yield %>
+      <% else %>
+        <div class="row">
+          <main class="col-8">
+            <%= yield %> 
+          </main>
+          <section class="col-4">
+            <%= render "shared/stats" %>
+          </section>
+        </div>
+      <% end %>
+      
+    <% else %>
+      <main class="not-logged-in">
+        <%= yield %> 
+      </main>
+    <% end %>
   </body>
 </html>
