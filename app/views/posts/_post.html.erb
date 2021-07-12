@@ -9,7 +9,9 @@
         </h5>
         <span class="card-text">
           <%= post.body %> 
+          <%= image_tag post.display_image if post.image.attached? %>
         </span>
+          
         <aside class="card-text">
           <small class="text-muted"> 
             Last updated <%= distance_of_time_in_words(post.updated_at, Time.now) %> ago by <%= post.user.name %> 
